@@ -269,6 +269,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bottleLife: 3
+  particles:
+  - {fileID: 198247871303120836, guid: 70b871879b705244da188568df7cc3bc, type: 3}
+  - {fileID: 19800000, guid: 185edab1b5ef31e46b5d382b4f1cd6a2, type: 3}
 --- !u!136 &371556454575711358
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BottleController : MonoBehaviour
 {
     [SerializeField] private float bottleLife;
+    [SerializeField] private ParticleSystem[] particles;
 
     private Rigidbody rigidbody;
 
@@ -28,7 +29,20 @@ public class BottleController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        StartCoroutine(DestroyBottle());
+        Vector3  particlePos = gameObject.transform.position;
+        
+       //Debug.Log(collision.relativeVelocity.magnitude);
+
+        if (collision.relativeVelocity.magnitude > 20)
+        {
+            StartCoroutine(DestroyBottle());
+
+            foreach (ParticleSystem particle in particles)
+            {
+                Instantiate(particle, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform.parent);
+            }
+            Debug.Log(collision.relativeVelocity.magnitude);
+        }
     }
 
 }

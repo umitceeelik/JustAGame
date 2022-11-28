@@ -65,9 +65,9 @@ public class ThrowingController : MonoBehaviour
     private void DrawProjection()
     {
         lineRenderer.positionCount = Mathf.CeilToInt(LinePoints / TimeBetweenPoints) + 1;
-        Vector3 startPosition = ReleasePosition.position;
+        Vector3 startPosition = throwableObject.transform.position;
 
-        float realForce = (float)Math.Sqrt((float)Math.Pow(forwardForce, 2) + (float)Math.Pow(forwardForce, 2));
+        float realForce = (float)Math.Sqrt((float)Math.Pow(forwardForce, 2) /*+ (float)Math.Pow(upForce, 2)*/);
         Vector3 startVelocity = realForce * camera.transform.forward / rb.mass;
         int i = 0;
         lineRenderer.SetPosition(i, startPosition);
@@ -123,26 +123,25 @@ public class ThrowingController : MonoBehaviour
     }
 
 
-    public void AnimationStartedTrigger() //Throw bottle
-    {
-        Debug.Log("1");
-        //playerController.animator.SetBool("Throw", true);
+    //public void AnimationStartedTrigger() //Throw bottle
+    //{
+    //    Debug.Log("1");
+    //    //playerController.animator.SetBool("Throw", true);
 
-        // playerController.GetComponent<Animator>().GetComponent<AnimatorController>().GetComponent<Animation>().Stop();
-        if (Input.GetMouseButtonDown(0))
-        {
-            playerController.animator.SetBool("Throw", true);
-            // playerController.GetComponent<Animator>().GetComponent<AnimatorController>().GetComponent<Animation>().Play();
+    //    // playerController.GetComponent<Animator>().GetComponent<AnimatorController>().GetComponent<Animation>().Stop();
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        playerController.animator.SetBool("Throw", true);
+    //        // playerController.GetComponent<Animator>().GetComponent<AnimatorController>().GetComponent<Animation>().Play();
             
-        }
-        Debug.Log("3");
+    //    }
+    //    Debug.Log("3");
         
-    }
+    //}
 
     public void AnimationContinueTrigger()
     {
         ThrowBottle();
-        Debug.Log("2");
         playerController.animator.SetBool("Throw", false);
     }
 
