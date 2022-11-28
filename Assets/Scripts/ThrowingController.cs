@@ -36,6 +36,7 @@ public class ThrowingController : MonoBehaviour
     private void Awake()
     {
         var newBottle = Instantiate(bottle, bottlePosition.position, bottlePosition.rotation, bottlePosition);
+        playerController.canThrow = true;
 
         throwableObject = newBottle;
         rb = throwableObject.GetComponent<Rigidbody>();
@@ -52,10 +53,10 @@ public class ThrowingController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && playerController.canThrow)
             lineRenderer.enabled = true;
 
-        DrawProjection();
+        if(playerController.canThrow) DrawProjection();
 
         if (Input.GetMouseButtonUp(0))
             lineRenderer.enabled = false;
@@ -95,9 +96,7 @@ public class ThrowingController : MonoBehaviour
 
     public void ThrowBottle()
     {
-        
-
-            RaycastHit hit;
+        RaycastHit hit;
 
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 100f))
             transform.LookAt(hit.point);
@@ -120,27 +119,31 @@ public class ThrowingController : MonoBehaviour
 
         rb.AddForce(camera.transform.forward * forwardForce, ForceMode.Impulse);
         rb.AddForce(camera.transform.up * upForce, ForceMode.Impulse);
+        playerController.canThrow = false;
     }
 
 
     public void AnimationStartedTrigger() //Throw bottle
     {
         Debug.Log("1");
-        playerController.animator.SetBool("Throw", false);
+        //playerController.animator.SetBool("Throw", true);
+
         // playerController.GetComponent<Animator>().GetComponent<AnimatorController>().GetComponent<Animation>().Stop();
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0))
         {
             playerController.animator.SetBool("Throw", true);
             // playerController.GetComponent<Animator>().GetComponent<AnimatorController>().GetComponent<Animation>().Play();
-            ThrowBottle();
-            Debug.Log("2");
+            
         }
         Debug.Log("3");
+        
     }
 
     public void AnimationContinueTrigger()
     {
-
+        ThrowBottle();
+        Debug.Log("2");
+        playerController.animator.SetBool("Throw", false);
     }
 
 
@@ -148,6 +151,7 @@ public class ThrowingController : MonoBehaviour
     public void AnimationFinishedTrigger()
     {
         StartCoroutine(InstantiateBottle());
+        playerController.isThrowing = false;
     }
 
 
@@ -156,6 +160,7 @@ public class ThrowingController : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
 
         var newBottle1 = Instantiate(bottle, bottlePosition.position, bottlePosition.rotation, bottlePosition);
+        playerController.canThrow = true;
         throwableObject = newBottle1;
         rb = throwableObject.GetComponent<Rigidbody>();
     }

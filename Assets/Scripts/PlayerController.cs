@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float animationPlayTransition = 0.15f;
 
+    public bool canThrow;
+    public bool isThrowing;
 
     private CharacterController controller;
     private PlayerInput playerInput;
@@ -25,9 +27,9 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
     private Transform cameraTransform;
 
-    public InputAction moveAction;
-    public InputAction jumpAction;
-    public InputAction throwAction;
+    private InputAction moveAction;
+    private InputAction jumpAction;
+    private InputAction throwAction;
 
     public Animator animator;
     int jumpAnimation;
@@ -78,17 +80,24 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat(moveZAnimationParameterId, currentAnimationBlendVector.y);
 
         // Changes the height position of the player..
-        if (jumpAction.triggered && groundedPlayer)
+        if (jumpAction.triggered && groundedPlayer && !isThrowing)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             animator.CrossFade(jumpAnimation, animationPlayTransition);
         }
 
         // Changes the height position of the player..
-        if (throwAction.triggered && groundedPlayer)
+        if (/*throwAction.triggered*/ Input.GetMouseButtonDown(0) && groundedPlayer && canThrow)
         {
-            animator.SetBool("Throw", true);
+            //animator.SetBool("Throw", true);
             animator.CrossFade(throwAnimation, animationPlayTransition * 0.1f);
+        }
+
+        if (/*throwAction.triggered*/ Input.GetMouseButtonUp(0) && groundedPlayer && canThrow)
+        {
+            isThrowing = true;
+            animator.SetBool("Throw", true);
+            //animator.CrossFade(throwAnimation, animationPlayTransition * 0.1f);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;

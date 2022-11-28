@@ -288,34 +288,9 @@ MonoBehaviour:
   rotationSpeed: 5
   animationSmoothTime: 0.05
   animationPlayTransition: 0.15
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 20ee54d4-616c-4882-8b0b-fea010b13a69
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  jumpAction:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b61c090a-693d-4489-a664-524bd3858e13
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  throwAction:
-    m_Name: Throw
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 79ba72fa-b9d1-424b-8466-cf8d4bd673bb
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  animator: {fileID: 0}
+  canThrow: 0
+  isThrowing: 0
+  animator: {fileID: 562320660}
 --- !u!143 &562320658
 CharacterController:
   m_ObjectHideFlags: 0
@@ -373,7 +348,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562320652}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e936f0676d937c344a3fb0bb71aa70f9, type: 3}
+  m_Avatar: {fileID: 9000000, guid: e51b1dc8a2336a54ca283c51ba2d1d36, type: 3}
   m_Controller: {fileID: 9100000, guid: b50a75ad6d09c7844b6fa244642aa651, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -406,7 +381,7 @@ MonoBehaviour:
   LinePoints: 25
   TimeBetweenPoints: 0.1
   throwableObject: {fileID: 0}
-  playerController: {fileID: 0}
+  playerController: {fileID: 562320657}
 --- !u!1 &637325773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5355284100786379561, guid: 15a41c98bb7a09c428ae928d4790689a, type: 3}
@@ -649,7 +624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3250194261959458169, guid: e210948372bcd9543b498bba3789e469, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.820288
+      value: 0.95918185
       objectReference: {fileID: 0}
     - target: {fileID: 3250194261959458169, guid: e210948372bcd9543b498bba3789e469, type: 3}
       propertyPath: m_LocalPosition.y
@@ -657,7 +632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3250194261959458169, guid: e210948372bcd9543b498bba3789e469, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.970087
+      value: -3.450893
       objectReference: {fileID: 0}
     - target: {fileID: 3250194261959458169, guid: e210948372bcd9543b498bba3789e469, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1017,7 +992,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.028606143, y: -0.030526005, z: 0.0008739967, w: 0.99912417}
-  m_LocalPosition: {x: 8.820288, y: 2.1476371, z: -2.970087}
+  m_LocalPosition: {x: 0.95918185, y: 2.1476371, z: -3.450893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1139,7 +1114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355284101117190784, guid: 15a41c98bb7a09c428ae928d4790689a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.2173643
+      value: 0.62724394
       objectReference: {fileID: 0}
     - target: {fileID: 5355284101117190784, guid: 15a41c98bb7a09c428ae928d4790689a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1147,7 +1122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355284101117190784, guid: 15a41c98bb7a09c428ae928d4790689a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.2154204
+      value: -1.5573268
       objectReference: {fileID: 0}
     - target: {fileID: 5355284101117190784, guid: 15a41c98bb7a09c428ae928d4790689a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2143,33 +2118,8 @@ MonoBehaviour:
   rotationSpeed: 5
   animationSmoothTime: 0.05
   animationPlayTransition: 0.15
-  moveAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  jumpAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  throwAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  canThrow: 0
+  isThrowing: 0
   animator: {fileID: 0}
 --- !u!114 &1834202821
 MonoBehaviour:
